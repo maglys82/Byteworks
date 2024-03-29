@@ -1,0 +1,23 @@
+
+.card-background {
+    background-image: url("../../assets/imagen.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: black;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.card-background h5,
+.card-background p {
+    color: black; 
+}
+
+.card-background button{
+    color: black;
+}
