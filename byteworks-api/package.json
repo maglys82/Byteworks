@@ -1,0 +1,20 @@
+{
+  "name": "byteworks-api",
+  "version": "1.0.0",
+  "description": "byteworks-api",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "node": "^18.20.0",
+    "nodemon": "^3.1.0",
+    "pg": "^8.11.3"
+  }
+}
