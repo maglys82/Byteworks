@@ -39,7 +39,7 @@ const Apply = () => {
                     <Typography variant="body2">
                         Estatus
                         <br />
-                        Reviews
+                        Skills
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -67,7 +67,7 @@ const Apply = () => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"Confirmado!"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         Tu aplicacion has sido enviada exitosamente!

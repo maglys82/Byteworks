@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Projects from "../../components/users/Projects";
 import Jobs from "../../components/users/Jobs";
 import { useData } from "../../context/ByteContext";
+import Box from "@mui/material/Box";
 
 const Users = () => {
   const originalCardData = useData();
@@ -29,7 +30,12 @@ const Users = () => {
   const filteredData = handleFilter();
 
   return (
-    <div className="userview">
+    <Box
+      display="flex"
+      flexDirection="row"
+      p={2}
+      gap={20}
+    >
       <Projects
         originalCardData={originalCardData}
         filters={filters}
@@ -41,7 +47,7 @@ const Users = () => {
         filters={filters}
         handleFilter={handleFilter}
       />
-    </div>
+    </Box>
   );
 };
 

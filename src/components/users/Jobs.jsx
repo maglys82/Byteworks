@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import JobCard from "./JobCard";
-import { useData } from "../context/Context";
+import { useData } from "../../context/ByteContext";
 
 const Jobs = ({ filters, handleFilter }) => {
   const originalCardData = useData();

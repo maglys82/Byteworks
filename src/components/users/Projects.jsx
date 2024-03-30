@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
-import { useData } from "../context/Context";
+import { useData } from "../../context/ByteContext";
 
 const Projects = () => {
   const originalCardData = useData();
@@ -61,22 +61,22 @@ const Projects = () => {
     <>
       <Box
         margin="auto"
-        height={550}
+        height={530}
         width={400}
         display="flex"
         flexDirection="column"
         alignItems="center"
         gap={4}
         p={2}
-        sx={{ border: '2px solid gray', borderRadius: '10px', marginLeft: '20px', marginBottom: '15px', bgcolor: 'white' }}
+        sx={{ border: '2px solid gray', borderRadius: '10px', marginLeft: '20px', marginTop: '10px', bgcolor: 'white' }}
       >
       <Tooltip title="Mi Perfil">
           <Stack direction="row" spacing={2}>
             <Avatar sx={{ bgcolor: lightBlue[500] }} onClick={handleClick} >U</Avatar>
           </Stack>
       </Tooltip>
-        <Container maxWidth="sm">
-          <WorkIcon sx={{ color: 'black' }} />
+        <Container maxWidth="sm" sx={{ display: "flex", justifyContent: "center",}}>
+          <WorkIcon sx={{ color: "black" }} />
         </Container>
         <Autocomplete
           value={filters.type}
