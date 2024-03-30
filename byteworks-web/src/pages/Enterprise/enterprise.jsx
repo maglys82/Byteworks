@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Grid, Card, CardContent } from '@mui/material';
+import { Grid, Card, CardContent,TextareaAutosize  } from '@mui/material';
 import './styles.css'
 
 function Enterprise() {
@@ -37,7 +37,7 @@ function Enterprise() {
 
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', margin: '5px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', margin: '5px', padding: '2rem' }}>
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                 <Grid container spacing={3}>
                     {jobs.map(job => (
@@ -72,7 +72,7 @@ function Enterprise() {
                                     <p>{usuario.skill}</p>
                                     <p>{usuario.review}</p>  
                                     <p>{usuario.status}</p>  
-                                    <p>{usuario.cometarios}</p> 
+                                    <TextareaAutosize aria-label="comentarios" placeholder="Comentarios..." style={{ width: '100%', height: '30px',marginTop: '10px' }} />
                                     <Link to={`/jobs/${usuario.id}`}> </Link>
                                 </CardContent>
                             </Card>

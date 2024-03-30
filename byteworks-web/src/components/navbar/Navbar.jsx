@@ -43,6 +43,7 @@ export default function ButtonAppBar() {
             <Button color="inherit" component={NavLink} to="/register">Register</Button>
             <Button color="inherit" component={NavLink} to="/login">Login</Button>
             <Button color="inherit" component={NavLink} to="/users">Users</Button>
+            <Button color="inherit" component={NavLink} to="/enterprise">Dashboard</Button>
           </Box>
           <IconButton
             size="large"
