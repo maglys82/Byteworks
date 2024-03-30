@@ -18,6 +18,17 @@ app.get('/jobs', (req, res) => {
     });
 });
 
+app.get('/usuarios', (req, res) => {
+    fs.readFile('usuarios.json', 'utf8', (err, usuarios) => {
+        if (err) {
+            console.error('Error al leer el archivo:', err);
+            return res.status(500).send('Error interno del servidor');
+        }
+        const jsonData = JSON.parse(usuarios);
+        res.json(jsonData);
+    });
+});
+
 app.listen(3000, () => {
     console.log('Servidor corriendo en el puerto 3000');
 });
