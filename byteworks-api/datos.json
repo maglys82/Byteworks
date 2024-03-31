@@ -4,27 +4,27 @@
         "name": "Desarrollador Full Stack.",
         "business": "Consultora InterGlobal",
         "type_of_service": "Desarrollo de software personalizado",
-        "status": "OK"
+        "status": "En progreso"
     },
     {
         "id": 2,
         "name": "Programador de ciberseguridad.",
         "business": "Consultora Global",
         "type_of_service": "Desarrollo de Aplicaciones Móviles",
-        "status": "OK"
+        "status": "Finalizado"
     },
     {
         "id": 3,
         "name": "Programador Python.",
         "business": "Consultora TI",
         "type_of_service": "Desarrollo de aplicaciones web",
-        "status": "OK"
+        "status": "En progreso"
     },
     {
         "id": 4,
         "name": "Programador de Inteligencia Artificial (IA)",
         "business": "Consultora Software y mucho Mas",
         "type_of_service": "Desarrollo de prototipos de software",
-        "status": "OK"
+        "status": "En progreso"
     }
 ]
