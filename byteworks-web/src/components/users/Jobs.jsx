@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from "react";
+
 import { Box } from "@mui/material";
 import JobCard from "./JobCard";
-import { useData } from "../../context/ByteContext";
 
-const Jobs = ({ filters, handleFilter }) => {
-  const originalCardData = useData();
-  const [jobsList, setJobsList] = useState(originalCardData);
 
-  useEffect(() => {
-    handleFilter();
-  }, [filters]);
-
+const Jobs = ({data}) => {
   return (
     <Box
       margin={"auto"}
@@ -23,9 +16,9 @@ const Jobs = ({ filters, handleFilter }) => {
       p={2}
       sx={{ marginTop: "5px" }}
     >
-      {jobsList.map((job) => (
+      {data.map((job, index) => (
         <JobCard
-          key={job.id}
+        key={`${job.id}-${index}`}
           id={job.id}
           subtitle={job.subtitle}
           title={job.title}
