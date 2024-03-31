@@ -27,10 +27,10 @@ const JobCard = ({ id }) => {
                     </Typography>
                     <Typography variant="body1">{title}</Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
-                        Tipo: {type.join(", ")}<br />
-                        Estado: {status.join(", ")}<br />
-                        Rol: {role.join(", ")}<br />
-                        Skills: {skills.join(", ")}<br />
+                        Tipo: {type}<br />
+                        Estado: {status}<br />
+                        Rol: {role}<br />
+                        Skills: {skills}<br />
                     </Typography>
                 </CardContent>
             </CardActionArea>
