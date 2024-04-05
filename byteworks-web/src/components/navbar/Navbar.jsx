@@ -22,14 +22,13 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar style={{ background: '#000B25' }} position="static">
+      <AppBar style={{ background: '#1976d2' }} position="static">
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 1 }}
           >
             <Link to="/">
               <img src="/src/assets/img/logo1.png" width="80px"  alt="Logo" />
