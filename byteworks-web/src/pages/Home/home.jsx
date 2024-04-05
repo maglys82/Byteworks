@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Typography, Box } from "@mui/material";
@@ -8,9 +8,9 @@ import { images } from "./home.label";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const home = () => {
+const Home = () => {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
@@ -74,4 +74,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

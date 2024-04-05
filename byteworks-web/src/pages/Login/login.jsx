@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
+
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -29,7 +31,10 @@ function Copyright(props) {
 
 const defaultTheme = createTheme()
 
-export default function SignIn() {
+
+
+const Login = () => {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget)
@@ -38,7 +43,6 @@ export default function SignIn() {
       password: data.get('password'),
     });
   };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -51,6 +55,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
+         
           <Avatar sx={{ m: 1, bgcolor: '#257FEA' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -107,5 +112,7 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
-  );
+  )
 }
+
+export default Login
