@@ -7,13 +7,13 @@ import EmailIcon from '@mui/icons-material/Email';
 
 function Footer() {
   return (
-    <Box textAlign="center" 
-    sx={{ mt: 5, bgcolor: "#000B25" }}
+    <Box  p={0.5} textAlign="center" 
+    sx={{ mt: 5, bgcolor: "#1976d2" }}
      >
-      <Typography variant="body2" color="#fff">
+      <Typography p={0.5} variant="body2" color="#fff">
         Connect with us:
       </Typography>
-      <Box mt={1}>
+      <Box p={0.5}>
         <Link href="https://github.com" target="_blank" rel="noopener noreferrer" color="#fff">
           <GitHubIcon style={{ marginRight: 8 }} />
         </Link>
