@@ -11,8 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-
-
+import { useState } from 'react'
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -30,15 +30,34 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme()
-
-
-
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios.post('/login', { formData})
+    .then(res => {
+       if (res.data.success) {
+        //  localStorage.setItem('token', res.data.token);
+         history.push('/');
+       } else {
+         alert('Invalid email or password');
+       }
+     })
+    .catch(err => {
+       console.error(err);
+       alert('An error occurred while logging in');
+     });
+  };
+
+
+  const handleChange = (event) => {
+    event.preventDefault();
     const data = new FormData(event.currentTarget)
-    console.log({
+    setFormData({
       email: data.get('email'),
       password: data.get('password'),
     });
@@ -62,7 +81,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form"  onSubmit={handleSubmit} onChange={handleChange} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
