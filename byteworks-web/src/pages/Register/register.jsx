@@ -1,32 +1,37 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import axios from 'axios';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import { register } from "../../services/RegisterService";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="https://byteworks.cl">
         BiteWorks
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -36,24 +41,21 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [profile, setProfile] = React.useState('');
+  const [profile, setProfile] = React.useState("");
   const [skills, setSkills] = React.useState([]);
   const [formData, setFormData] = React.useState({
-      email: '',
-      password:'',
-      role:'',
-      type_of_service: '',
-
+    email: "",
+    password: "",
+    role: "",
+    type_of_service: "",
   });
 
-
-  
   const handleProfileChange = (event) => {
     setProfile(event.target.value);
-    if(event.target.value === 'Talent') {
+    if (event.target.value === "Talent") {
       // Si se selecciona Talent, aquí podrías cargar las habilidades de alguna fuente de datos.
       // Aquí simplemente he puesto algunas habilidades de ejemplo.
-      setSkills(['JavaScript', 'React', 'Node.js', 'Python', 'Java']);
+      setSkills(["JavaScript", "React", "Node.js", "Python", "Java"]);
     } else {
       setSkills([]);
     }
@@ -61,30 +63,18 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/register', { formData})
-    .then(res => {
-       if (res.data.success) {
-        //  localStorage.setItem('token', res.data.token);
-         history.push('/');
-       } else {
-         alert('Invalid email or password');
-       }
-     })
-    .catch(err => {
-       console.error(err);
-       alert('An error occurred while register in');
-     });
+    register(formData);
   };
 
-// email, password, role, type_of_service
-  const  handleChange = (event) => {
+  // email, password, role, type_of_service
+  const handleChange = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-   setFormData({  
-      email: data.get('email'),
-      password: data.get('password'),
+    setFormData({
+      email: data.get("email"),
+      password: data.get("password"),
       role: profile,
-      type_of_service: data.get('lastName'),
+      type_of_service: data.get("lastName"),
     });
   };
 
@@ -95,18 +85,24 @@ export default function SignUp() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#257FEA' }}>
+          <Avatar sx={{ m: 1, bgcolor: "#257FEA" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate  onSubmit={handleSubmit} onChange={handleChange} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -165,7 +161,7 @@ export default function SignUp() {
                   </Select>
                 </FormControl>
               </Grid>
-              {profile === 'Talent' && (
+              {profile === "Talent" && (
                 <Grid item xs={12}>
                   <FormControl fullWidth>
                     <InputLabel id="skills-label">Skills</InputLabel>
@@ -188,7 +184,9 @@ export default function SignUp() {
               )}
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
                   label="I want to receive information & promotions via email."
                 />
               </Grid>
@@ -197,7 +195,7 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, bgcolor: '#257FEA' }}
+              sx={{ mt: 3, mb: 2, bgcolor: "#257FEA" }}
             >
               Sign Up
             </Button>

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
-import axios from 'axios';
+import { login } from '../../services/LoginService'
 
 function Copyright(props) {
   return (
@@ -38,19 +38,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/login', { formData})
-    .then(res => {
-       if (res.data.success) {
-        //  localStorage.setItem('token', res.data.token);
-         history.push('/');
-       } else {
-         alert('Invalid email or password');
-       }
-     })
-    .catch(err => {
-       console.error(err);
-       alert('An error occurred while logging in');
-     });
+   login(formData)
   };
 
 
