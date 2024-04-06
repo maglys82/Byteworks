@@ -7,18 +7,20 @@ import EmailIcon from '@mui/icons-material/Email';
 
 function Footer() {
   return (
-    <Box mt={5} textAlign="center">
-      <Typography variant="body2" color="text.secondary">
+    <Box  p={0.5} textAlign="center" 
+    sx={{ mt: 5, bgcolor: "#1976d2" }}
+     >
+      <Typography p={0.5} variant="body2" color="#fff">
         Connect with us:
       </Typography>
-      <Box mt={1}>
-        <Link href="https://github.com" target="_blank" rel="noopener noreferrer" color="inherit">
+      <Box p={0.5}>
+        <Link href="https://github.com" target="_blank" rel="noopener noreferrer" color="#fff">
           <GitHubIcon style={{ marginRight: 8 }} />
         </Link>
-        <Link href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" color="inherit">
+        <Link href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" color="#fff">
           <WhatsAppIcon style={{ marginRight: 8 }} />
         </Link>
-        <Link href="mailto:info@example.com" color="inherit">
+        <Link href="mailto:info@example.com" color="#fff">
           <EmailIcon />
         </Link>
       </Box>

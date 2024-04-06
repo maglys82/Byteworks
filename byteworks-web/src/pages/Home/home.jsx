@@ -1,39 +1,77 @@
-// eslint-disable-next-line no-unused-vars
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import { Typography, Box } from "@mui/material";
+import SwipeableViews from "react-swipeable-views";
+import { autoPlay } from "react-swipeable-views-utils";
+import { images } from "./home.label";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-export default function Home() {
+const Home = () => {
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = useState(0);
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
+
   return (
-    <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Item><img src="/src/assets/img/img1.jpg" width="250px"  alt="" /></Item>
-        </Grid>
-        <Grid item xs={6}>
-        <Item><img src="/src/assets/img/img2.jpg" width="250px"  alt="" /></Item>
-        </Grid>
-        <Grid item xs={6}>
-        <Item><img src="/src/assets/img/img3.jpg" width="250px"  alt="" /></Item>
-        </Grid>
-        <Grid item xs={6}>
-        <Item><img src="/src/assets/img/img4.jpg" width="250px"  alt="" /></Item>
-        </Grid>
-      </Grid>
-      <Typography variant="h2" component="h4" textAlign="center">
-        We are create solutions for you
-      </Typography>
-    </Box>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: 'center',
+          alignItems: "center",
+          mt: 1,
+          p: 22,
+          bgcolor: "background.default",
+          borderColor: "divider",
+          overflow: "clip",
+        }}
+      >
+     
+
+        <AutoPlaySwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {images.map((step, index) => (
+            <div key={step.label}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <Box
+                  component="img"
+                  sx={{
+                    height: 320,
+                    display: "block",
+                    maxWidth: 600,
+                    overflow: "hidden",
+                    width: "100%",
+                  }}
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+              ) : null}
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+       <Paper
+          square
+          elevation={0}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            height: 50,
+            pl: 2,
+            bgcolor: "background.default",
+          }}
+        ><Typography>{images[activeStep].label}</Typography>
+        </Paper>
+      </Box>
+    </>
   );
-}
+};
+
+export default Home;
