@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export function login(formData) {
-    axios.post('/login', {formData})
+export function loginService(data) {
+    axios.post('/login', {data})
     .then(res => {
        if (res.data.success) {
         //  localStorage.setItem('token', res.data.token);
