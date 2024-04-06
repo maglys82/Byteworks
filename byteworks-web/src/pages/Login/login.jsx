@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
-import { login } from '../../services/LoginService'
+import { loginService } from '../../services/LoginService'
 
 function Copyright(props) {
   return (
@@ -38,7 +38,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   login(formData)
+  loginService(formData)
   };
 
 

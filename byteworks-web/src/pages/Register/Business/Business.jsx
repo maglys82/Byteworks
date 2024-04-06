@@ -17,9 +17,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { Controller, useForm } from "react-hook-form";
-import { loginService } from "../../../services/LoginService";
-
-
+import { RegisterService } from "../../../services/RegisterService";
 
 function Copyright(props) {
   return (
@@ -46,7 +44,7 @@ const Business = () => {
  
   const { register, handleSubmit, reset, control } = useForm();
   const onSubmit = (data) => {
-    loginService(data)
+    RegisterService(data)
     reset();
   };
 
