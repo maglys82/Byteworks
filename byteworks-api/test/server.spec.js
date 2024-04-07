@@ -34,3 +34,9 @@ describe('POST /jobs', () => {
     expect(response.body).toEqual('Faltan datos Requeridos');
   });
 });
+
+it('debería devolver una lista de trabajos en formato JSON', async () => {
+  const response = await request(server).get('/jobs');
+  expect(response.headers['content-type']).toEqual(expect.stringContaining('application/json'));
+  expect(response.status).toEqual(200)
+});

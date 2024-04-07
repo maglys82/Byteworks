@@ -14,7 +14,7 @@ const pool = new Pool({
 
 // 1.-Funcion insertar en la tabla Jobs y usuarios
 const guardarJobs = async (name, business, type_of_service, status) => {
-    const consulta = "INSERT INTO jobs values (DEFAULT,$1.$2,$3,$4)";
+    const consulta = "INSERT INTO jobs values ($1,$2,$3,$4)";
     const values = [name, business, type_of_service, status];
     try {
         const result = await pool.query(consulta, values);
@@ -27,8 +27,9 @@ const guardarJobs = async (name, business, type_of_service, status) => {
 
 }
 
+
 const guardarUsuarios = async (name, rol, skill, review, status, comentario) => {
-    const consulta = "INSERT INTO usuarios values (DEFAULT,$1,$2,$3,$4,$5,$6)";
+    const consulta = "INSERT INTO usuarios values ($1,$2,$3,$4,$5,$6)";
     const values = [name, rol, skill, review, status, comentario];
     try {
         const result = await pool.query(consulta, values);
