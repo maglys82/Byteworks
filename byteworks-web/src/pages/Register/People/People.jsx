@@ -54,6 +54,7 @@ const People = () => {
 
   const { register, handleSubmit, reset, control } = useForm();
   const onSubmit = (data) => {
+    console.log(data);
     RegisterService(data);
     reset();
   };
@@ -84,13 +85,14 @@ const People = () => {
                   autoComplete="given-name"
                   name="firstName"
                   {...register("firstName")}
-                  label="First Name"
+                  label="Name"
                   required
                   fullWidth
                   id="firstName"
                   autoFocus
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -189,6 +191,7 @@ const People = () => {
                   />
                 </FormControl>
               </Grid>
+
               <Grid item xs={12}>
                 <FormControlLabel
                   control={

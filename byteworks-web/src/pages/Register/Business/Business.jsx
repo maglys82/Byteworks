@@ -41,11 +41,11 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-
 const Business = () => {
  
   const { register, handleSubmit, reset, control } = useForm();
   const onSubmit = (data) => {
+    console.log(data);
     loginService(data)
     reset();
   };
@@ -57,7 +57,7 @@ const Business = () => {
       <Box
         onSubmit={handleSubmit(onSubmit)}
         sx={{
-          marginTop: 8,
+          marginTop: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -75,7 +75,20 @@ const Business = () => {
           noValidate
           sx={{ mt: 3 }}
         >
+          
           <Grid container spacing={2}>
+          <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  {...register("firstName")}
+                  label="Name"
+                  required
+                  fullWidth
+                  id="firstName"
+                  autoFocus
+                />
+              </Grid>
             <Grid item xs={12}>
               <TextField
                 required
@@ -99,16 +112,17 @@ const Business = () => {
                 autoComplete="new-password"
               />
             </Grid>
+
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <InputLabel id="type-services-label">Type of services</InputLabel>
+                  <InputLabel id="role-label">Role</InputLabel>
                   <Controller
-                    name="typeServices"
-                    id="typeServices"
+                    name="role"
+                    id="role"
                     defaultValue={""}
                     control={control}
                     render={({ field }) => (
-                      <Select labelId="type-services-labe" {...field}>
+                      <Select labelId="role-label" {...field}>
                         <MenuItem value="Back-End">Back-End Developer</MenuItem>
                         <MenuItem value="Front-End">
                           Front-End Developer
@@ -134,6 +148,19 @@ const Business = () => {
                   />
                 </FormControl>
               </Grid>
+            <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="Type of services"
+                  {...register("Type of services")}
+                  label="Type of services"
+                  required
+                  fullWidth
+                  id="Type of services"
+                  autoFocus
+                />
+              </Grid>
+
             <Grid item xs={12}>
               <FormControlLabel
                 control={
