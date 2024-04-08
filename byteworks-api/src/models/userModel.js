@@ -21,6 +21,4 @@ const createBusiness = async ({ email, password, role, type_of_service}) => {
   return response.rows[0]
 }
 
-
-
 export { createUser, createBusiness }
