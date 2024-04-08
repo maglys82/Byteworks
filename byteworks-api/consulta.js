@@ -9,8 +9,6 @@ const pool = new Pool({
   port: 5432,
   allowExitOnIdle: true
 })
-
-
 // 1.-Funcion insertar en la tabla Jobs y usuarios
 const guardarJobs = async (name, business, type_of_service, status) => {
   const consulta = "INSERT INTO jobs values ($1,$2,$3,$4)";
@@ -18,10 +16,9 @@ const guardarJobs = async (name, business, type_of_service, status) => {
   try {
     const result = await pool.query(consulta, values);
     return result;
-
-  } catch (error) {
-      console.error(error);
-
+  } 
+  catch (error) {
+    console.error(error);
   }
 }
 

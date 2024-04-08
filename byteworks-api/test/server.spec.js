@@ -1,7 +1,6 @@
 const request = require("supertest");
 const server = require("../server");
 
-
 describe('POST /jobs', () => {
   it('debería devolver un JSON con datos de trabajos desde la base de datos', async () => {
     const jobs = {

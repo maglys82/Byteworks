@@ -49,4 +49,27 @@ app.get('/usuarios', async (req, res) => {
   res.json(usuarios);
 })
 
+app.put('/jobs/:id', async (req, res) => {
+  const jobId = req.params.id;
+  const { name, business, type_of_service, type, user_dev } = req.body;
+  try {
+    const result = await pool.query('UPDATE jobs SET name = $1, business = $2, type_of_service = $3, type = $4, user_dev = $5 WHERE id = $6', [name, business, type_of_service, type, user_dev, jobId]);
+    res.json('Job actualizado con éxito');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Error al actualizar el job');
+  }
+});
+
+app.delete('/jobs/:id', async (req, res) => {
+  const jobId = req.params.id;
+  try {
+    const result = await pool.query('DELETE FROM jobs WHERE id = $1', [jobId]);
+    res.json('Job eliminado con éxito');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Error al eliminar el job');
+  }
+});
+
 module.exports = app
