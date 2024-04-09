@@ -11,8 +11,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { useState } from 'react'
 import { loginService } from '../../services/LoginService'
+import { useForm } from "react-hook-form";
+import { emailRegex } from '../../config/constans'
 
 function Copyright(props) {
   return (
@@ -31,25 +32,14 @@ function Copyright(props) {
 
 const defaultTheme = createTheme()
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  loginService(formData)
+  const { register, handleSubmit, reset, formState } = useForm();
+  const { errors } = formState;
+  const onSubmit = (data) => {
+    console.log(data);
+    loginService(data);
+    reset();
   };
 
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget)
-    setFormData({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -69,12 +59,21 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form"  onSubmit={handleSubmit} onChange={handleChange} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
+              {...register("email", {
+                required: "Email is Required",
+                pattern: {
+                  value: emailRegex,
+                  message: "Please Enter a Valid Email",
+                },
+              })}
+              error={!!errors.email}
+              helperText={errors.email?.message}
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -86,6 +85,11 @@ const Login = () => {
               fullWidth
               name="password"
               label="Password"
+              {...register("password", {
+                required: "Password is Required",
+              })}
+              error={!!errors.password}
+              helperText={errors.password?.message}
               type="password"
               id="password"
               autoComplete="current-password"

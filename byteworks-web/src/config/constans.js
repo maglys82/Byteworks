@@ -6,3 +6,5 @@ export const ENDPOINT = {
   users: `${URLBASE}/users`,
   business: `${URLBASE}/enterprise`,
 }
+export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi;
+export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]+$/
