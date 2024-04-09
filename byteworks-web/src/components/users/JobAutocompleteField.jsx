@@ -11,7 +11,7 @@ const JobAutocompleteField = (props) => {
         name={name}
         control={control}
         rules={{
-          required: "Este campo es obligatorio"
+          required: "This field is required"
         }}
         render={({ field, fieldState: { error } }) => {
           const { onChange, value, ref } = field;

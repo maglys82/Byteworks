@@ -19,26 +19,28 @@ const JobCard = ({ id }) => {
     };
 
     return (
-        <Card sx={{ maxWidth: 300, border: "2px solid black", borderRadius: "5px" }}>
+        <Card sx={{ maxWidth: 400, border: "1px solid #8080803d", borderRadius: "3px", p:3, m:2}}>
             <CardActionArea>
-                <CardContent sx={{ bgcolor: lightBlue[500] }}>
-                    <Typography gutterBottom variant="h4" component="div">
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h4">
                         {subtitle}
                     </Typography>
                     <Typography variant="body1">{title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
-                        Tipo: {type}<br />
-                        Estado: {status}<br />
-                        Rol: {role}<br />
+                    <Typography variant="body2" color="text.secondary" component="p" sx={{ textAlign: 'left' }}>
+                        Type: {type}<br />
+                        Status: {status}<br />
+                        Role: {role}<br />
                         Skills: {skills}<br />
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions sx={{ bgcolor: lightBlue[200] }}>
+            <CardActions sx={{ bgcolor: '#1976d2',  borderRadius: '4px', }}>
                 <Button
                     size="small"
                     variant="text"
                     sx={{
+                        
+                        width: '100%',
                         color: "white",
                         "&:focus": {
                             outline: "none",
@@ -49,7 +51,7 @@ const JobCard = ({ id }) => {
                     }}
                     onClick={handleClick}
                 >
-                    Aplicar
+                    Quick apply
                 </Button>
             </CardActions>
         </Card>

@@ -17,7 +17,7 @@ const Register = () => {
   };
 
   return (
-    <Container  sx={{ mt: 10 }} component="main" maxWidth="xs" >
+    <Container  sx={{ mt: 10,  mb:15}} component="main" maxWidth="xs" >
     <Box sx={{ width: '100%' }}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Tabs value={currentTabIndex} onChange={handleTabChange}>

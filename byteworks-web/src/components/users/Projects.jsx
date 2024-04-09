@@ -112,7 +112,7 @@ const Projects = () => {
             placeholder="Elige las habilidades del proyect"
           />
           <Button sx={{ width: '80%', mt: 3, mb: 4 }} variant="contained" endIcon={<SearchIcon />} type="submit">
-            Buscar
+          Search
           </Button>
         </Box>
       </form>

@@ -4,7 +4,7 @@ const jsonData = [
   {
     "id": "1",
     "title": "Web Developer",
-    "subtitle": "Empresa 1",
+    "subtitle": "InfiniTech",
     "type": "Plazo Fijo",
     "status":"En Progreso",
     "role": "Frontend",
