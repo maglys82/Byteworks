@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import Jobs from "./Jobs";
 import { useState } from "react";
+import { roleOptions, skillsOptions, statusOption, typeOptions } from "./Users.label";
 
 const Projects = () => {
   const originalCardData = useData();
@@ -26,55 +27,6 @@ const Projects = () => {
       skills: "",
     },
   });
-
-  const typeOptions = [
-    {
-      id: "1",
-      label: "Freelance",
-    },
-    {
-      id: "2",
-      label: "Plazo Fijo",
-    },
-  ];
-  const statusOption = [
-    {
-      id: "1",
-      label: "En Progreso",
-    },
-    {
-      id: "2",
-      label: "Finalizado",
-    },
-  ];
-  const roleOptions = [
-    {
-      id: "1",
-      label: "Frontend",
-    },
-    {
-      id: "2",
-      label: "Backend",
-    },
-    {
-      id: "3",
-      label: "Fullstack",
-    },
-  ];
-  const skillsOptions = [
-    {
-      id: "1",
-      label: "Python",
-    },
-    {
-      id: "2",
-      label: "Typescript",
-    },
-    {
-      id: "3",
-      label: "Javascript",
-    },
-  ];
 
   const onSubmit = (data) => {
     const filterData = (projectsData, data) => {
@@ -105,15 +57,14 @@ const Projects = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box
           margin="auto"
-          height={530}
           width={400}
           display="flex"
           flexDirection="column"
           alignItems="center"
-          gap={4}
+          gap={2}
           p={2}
           sx={{
-            border: "2px solid gray",
+            border: "1px solid #8080803d",
             borderRadius: "10px",
             marginLeft: "20px",
             marginTop: "10px",
@@ -160,7 +111,7 @@ const Projects = () => {
             name="skills"
             placeholder="Elige las habilidades del proyect"
           />
-          <Button variant="contained" endIcon={<SearchIcon />} type="submit">
+          <Button sx={{ width: '80%', mt: 3, mb: 4 }} variant="contained" endIcon={<SearchIcon />} type="submit">
             Buscar
           </Button>
         </Box>
