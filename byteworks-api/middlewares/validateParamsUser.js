@@ -1,9 +1,16 @@
 const validateParametersUser = (req, res, next) => {
-  const { user } = req.body;
-  const requiredFields = ["firstName", "email", "password", "role", "skills", "status"];
+  console.log("Received Data:", req.body)
+  let missingFields;
+  if (!req.body) {
+    return res.status(400).json({ error: "Missing form data" });
+  }
+  const { data } = req;
+  if (!data) {
+    return res.status(400).json({ error: "Missing form data" });
+  }
 
-  const missingFields = requiredFields.filter(field => !user[field]);
-
+  const requiredFields = ["firstName", "email", "password", "role", "skill", "status"];
+  missingFields = requiredFields.filter(field => !data[field]);
   if (missingFields.length) {
     const errorMessage = `Missing required fields: ${missingFields.join(", ")}`;
     return res.status(400).json({ error: errorMessage });
@@ -12,4 +19,6 @@ const validateParametersUser = (req, res, next) => {
   next();
 };
 
-export { validateParametersUser }
+export { validateParametersUser };
+
+

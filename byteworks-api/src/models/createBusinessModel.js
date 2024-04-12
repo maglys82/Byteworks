@@ -1,29 +1,37 @@
 import pool from "../../config/database/connectionDB.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-const createBusiness = async (firstName, email, hashedPassword, role, type_of_service) => {
+const createBusiness = async (firstName, email, password, role, service) => {
   try {
-    const password = "your_plain_text_password";
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    const insertbusinessQuery = `INSERT INTO business (firstname, email, password, role, type_of_service) VALUES ($1, $2, $3, $4, $5) RETURNING id, email`;
-    const result = await pool.query(insertbusinessQuery, [
+    console.log("service received:", service)
+    const insertBusinessQuery = `INSERT INTO business (firstname, email, password, role, service) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const result = await pool.query(insertBusinessQuery, [
       firstName,
       email,
       hashedPassword,
       role,
-      type_of_service
+      service,
     ]);
 
-    const newbusiness = result.rows[0];
-    return { message: "Business registered successfully!", newbusiness };
+    const newBusiness = result.rows[0];
+    const payload = {
+      BusinessId: newBusiness.id,
+      email: newBusiness.email,
+    };
+    const secret = process.env.JWT_SECRET;
+    const token = jwt.sign(payload, secret, { expiresIn: "1h" });
+
+    return { message: "Business registered successfully!", newBusiness, token };
   } catch (error) {
     console.error(error);
     let errorMessage = "An error occurred during registration.";
     if (error.code && error.code === "23505") {
       errorMessage = "Email already exists.";
     }
-    return { message: "An error occurred during registration.", error };
+    return { message: errorMessage, error };
   }
 };
 

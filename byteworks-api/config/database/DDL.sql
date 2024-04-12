@@ -18,8 +18,10 @@ CREATE TABLE business (
   email VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(60) NOT NULL,
   role VARCHAR(25) NOT NULL,
-  type_of_service VARCHAR(25) NOT NULL
+  service VARCHAR(25) NOT NULL,
+  CONSTRAINT service_not_null CHECK (service IS NOT NULL)
 );
+
 
 CREATE TABLE skills (
   id        INTEGER        NOT NULL,

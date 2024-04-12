@@ -109,7 +109,7 @@ const Business = () => {
             </Grid>
 
             <Grid item xs={12}>
-                <FormControl fullWidth>
+                <FormControl fullWidth required>
                   <InputLabel id="role-label">Role</InputLabel>
                   <Controller
                     name="role"
@@ -143,17 +143,22 @@ const Business = () => {
                   />
                 </FormControl>
               </Grid>
-            <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="Type of services"
-                  {...register("Type of services")}
-                  label="Type of services"
-                  required
-                  fullWidth
-                  id="Type of services"
-                  autoFocus
-                />
+              <Grid item xs={12}>
+                <FormControl fullWidth required>
+                  <InputLabel id="role-label">Service</InputLabel>
+                  <Controller
+                    name="service"
+                    id="service"
+                    defaultValue={""}
+                    control={control}
+                    render={({ field }) => (
+                      <Select labelId="role-label" {...field}>
+                        <MenuItem value="Freelance">Freelance</MenuItem>
+                        <MenuItem value="Contractor">Contract</MenuItem>
+                      </Select>
+                    )}
+                  />
+                </FormControl>
               </Grid>
           </Grid>
           <Button

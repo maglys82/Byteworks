@@ -11,6 +11,7 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
 import { validateLoginData } from '../../services/LoginService'
+import { useNavigate } from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -34,28 +35,34 @@ const Login = () => {
     password: '',
   });
 
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const isValid = await validateLoginData(formData);
-    if (isValid) {
-      console.log('Login successful!');
-      const navigate = useNavigate();
-      navigate('/');
-    } else {
-      alert('Invalid email or password.');
+    try {
+      const response = await validateLoginData(formData);
+      if (response.success) {
+        localStorage.setItem('token', response.data.token);
+        console.log('Login successful!');
+        navigate('/');
+      } else {
+        alert(response.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while logging in');
     }
   };
 
-
   const handleChange = (event) => {
-    event.preventDefault();
-    const { email, password } = event.target; 
-    setFormData({
-      email,
-      password,
-    });
+    const { name, value } = event.target; 
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+
+  
 
   return (
     <ThemeProvider theme={defaultTheme}>

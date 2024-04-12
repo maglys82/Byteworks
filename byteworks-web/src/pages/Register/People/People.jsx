@@ -130,7 +130,7 @@ const People = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControl fullWidth>
+                <FormControl fullWidth required>
                   <InputLabel id="role-label">Role</InputLabel>
                   <Controller
                     name="role"
@@ -166,7 +166,7 @@ const People = () => {
               </Grid>
 
               <Grid item xs={12}>
-                <FormControl fullWidth>
+                <FormControl fullWidth required>
                   <InputLabel id="role-label">Skill</InputLabel>
                   <Controller
                     name="skill"
@@ -187,7 +187,7 @@ const People = () => {
               </Grid>
 
               <Grid item xs={12}>
-                <FormControl fullWidth>
+                <FormControl fullWidth required>
                   <InputLabel id="status-label">Status</InputLabel>
                   <Controller
                     name="status"
@@ -197,7 +197,7 @@ const People = () => {
                     render={({ field }) => (
                       <Select labelId="role-label" {...field}>
                         <MenuItem value="Freelance">Freelancer</MenuItem>
-                        <MenuItem value="contrac">contrac</MenuItem>
+                        <MenuItem value="Contractor">Contractor</MenuItem>
                       </Select>
                     )}
                   />

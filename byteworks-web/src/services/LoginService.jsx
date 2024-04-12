@@ -1,25 +1,36 @@
 import axios from 'axios';
 import { ENDPOINT } from "../config/constans.js";
 
-export async function validateLoginData(data) {
+export async function validateLoginData(email, password) {
   try {
+    const data = {
+      email,
+      password,
+    };
+
     const response = await axios.post(ENDPOINT.login, data, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
-    if (response.data.success) {
-      window.sessionStorage.setItem('token', response.data.token);
-      window.alert('User identified succesfully .');
-      return true;
+    if (response.status === 200) {
+      const { success, token, error } = response.data;
+      if (success && token) {
+        localStorage.setItem('token', token);
+        return true;
+      } else {
+        alert(`Login failed: ${error}`);
+        return false;
+      }
     } else {
-      window.alert(`${response.data.error} .`);
+      alert('Unexpected server response.');
       return false;
     }
   } catch (error) {
     console.error('Error during login:', error);
-    window.alert('Error during login '); 
+    alert('Error during login.');
     return false;
   }
 }
-
 

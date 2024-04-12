@@ -1,23 +1,19 @@
-import { findError } from "../../byteworks-api/src/utils/utils.js";
+import { findError } from "../src/utils/utils.js";
 import jwt from "jsonwebtoken";
 
 const isLogin = async (req, res, next) => {
-  if (req.path === "/users" && req.method === "POST") {
-    return next();
-  }
-
   try {
     validateHeaders(req, res);
     const token = req.header("Authorization").split(" ")[1];
-    console.log("JWT:", token);
+    console.log("Received JWT:", token);
     const tokenData = await validateToken(token);
+    console.log("Decoded Token Data:", tokenData);
     req.user = tokenData;
     next();
   } catch (error) {
+    console.error("Authentication Error:", error);
     const errorFound = findError(error.code);
-    return res
-      .status(errorFound[0]?.status)
-      .json({ error: errorFound[0]?.message });
+    return res.status(errorFound[0]?.status).json({ error: errorFound[0]?.message });
   }
 };
 

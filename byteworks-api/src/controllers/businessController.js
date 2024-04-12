@@ -2,8 +2,8 @@ import { createBusiness } from "../models/createBusinessModel.js";
 
 const createNewBusiness = async (req, res) => {
   try {
-    const { firstName, email, password, role, type_of_service } = req.body;
-    const newBusinessObject = await createBusiness(firstName, email, password, role, type_of_service);
+    const { firstName, email, password, role, service } = req.body;
+    const newBusinessObject = await createBusiness(firstName, email, password, role, service);
     if (newBusinessObject.message === "Business registered successfully!") {
       console.log("Business registered successfully!");
       res.status(201).json({ message: "Business registered successfully!", newbusiness: newBusinessObject.newBusiness });
