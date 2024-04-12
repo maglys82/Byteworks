@@ -2,8 +2,6 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -12,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
-import { loginService } from '../../services/LoginService'
+import { validateLoginData } from '../../services/LoginService'
 
 function Copyright(props) {
   return (
@@ -36,20 +34,29 @@ const Login = () => {
     password: '',
   });
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  loginService(formData)
+    const isValid = await validateLoginData(formData);
+    if (isValid) {
+      console.log('Login successful!');
+      const navigate = useNavigate();
+      navigate('/');
+    } else {
+      alert('Invalid email or password.');
+    }
   };
 
 
   const handleChange = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget)
+    const { email, password } = event.target; 
     setFormData({
-      email: data.get('email'),
-      password: data.get('password'),
+      email,
+      password,
     });
   };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -90,10 +97,6 @@ const Login = () => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -103,11 +106,6 @@ const Login = () => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="./register" variant="body2">
                   {"Don't have an account? Sign Up"}

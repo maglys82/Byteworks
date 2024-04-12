@@ -11,14 +11,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import Jobs from "./Jobs";
-import useBusinessData from '../../hooks/useBusinessData';
-// import useUserData from '../../hooks/useUserData';
 
 const Projects = () => {
-  // const {userData} = useUserData();
-  // if (!userData) {
-  //   return <Box>No user!</Box>
-  // }
   const { businessData, typeofserviceOptions, roleOptions } = useBusinessData();
   const { handleSubmit, control } = useForm({
     defaultValues: {

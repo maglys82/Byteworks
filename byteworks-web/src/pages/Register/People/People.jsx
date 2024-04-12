@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -17,7 +15,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { Controller, useForm } from "react-hook-form";
-import { RegisterService } from "../../../services/RegisterService";
+import { RegisterUserService } from "../../../services/RegisterUserService";
+import { emailRegex } from "../../../config/constans";
+
 
 function Copyright(props) {
   return (
@@ -29,7 +29,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://byteworks.cl">
-        BiteWorks
+        ByteWorks
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -38,7 +38,7 @@ function Copyright(props) {
 }
 
 // TODO remove the Copyright function to another file.
-// TODO perform field validations.
+
 
 const defaultTheme = createTheme();
 
@@ -52,10 +52,10 @@ const People = () => {
     "Java",
   ]);
 
-  const { register, handleSubmit, reset, control } = useForm();
+  const { register, handleSubmit, reset, control, formState } = useForm();
+  const { errors } = formState;
   const onSubmit = (data) => {
-    console.log(data);
-    RegisterService(data);
+    RegisterUserService(data);
     reset();
   };
 
@@ -98,9 +98,17 @@ const People = () => {
                   required
                   fullWidth
                   id="email"
+                  {...register("email", {
+                    required: "Email is Required",
+                    pattern: {
+                      value: emailRegex,
+                      message: "Please Enter a Valid Email",
+                    },
+                  })}
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
                   label="Email Address"
                   name="email"
-                  {...register("email")}
                   autoComplete="email"
                 />
               </Grid>
@@ -110,8 +118,12 @@ const People = () => {
                   required
                   fullWidth
                   name="password"
-                  {...register("password")}
                   label="Password"
+                  {...register("password", {
+                    required: "Password is Required",
+                  })}
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -190,15 +202,6 @@ const People = () => {
                     )}
                   />
                 </FormControl>
-              </Grid>
-
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive information & promotions via email."
-                />
               </Grid>
             </Grid>
             <Button

@@ -1,11 +1,9 @@
 import { Card, CardActionArea, CardContent, CardActions, Typography, Button } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
 import { useNavigate } from 'react-router-dom';
-import useBusinessData from '../../hooks/useBusinessData';
 
-const JobCard = ({ businessId }) => {
+const JobCard = ({}) => {
     const navigate = useNavigate();
-    const businessData = useBusinessData(businessId);
 
     const handleClick = () => {
         navigate("/Apply");

@@ -1,9 +1,8 @@
-import express from "express"
-import { createNewUser} from "../../src/controllers/usersController.js"
-import { validateParametersUser } from "../../middlewares/validateParamsUser.js"
+import express from "express";
+import { createNewUser } from "../../src/controllers/usersController.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/register", validateParametersUser, createNewUser)
+router.post("/people", createNewUser);
 
-export default router
+export default router;

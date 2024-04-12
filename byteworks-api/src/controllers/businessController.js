@@ -1,18 +1,20 @@
-import { getBusiness } from "../models/businessModel.js"
-import { findError } from "../utils/utils.js"
+import { createBusiness } from "../models/createBusinessModel.js";
 
-const getAllBusiness = async (req, res) => {
-  const user = req.user
+const createNewBusiness = async (req, res) => {
   try {
-    const business = await getBusiness();
-    res.status(200).json({ business: business, user: user })
+    const { firstName, email, password, role, type_of_service } = req.body;
+    const newBusinessObject = await createBusiness(firstName, email, password, role, type_of_service);
+    if (newBusinessObject.message === "Business registered successfully!") {
+      console.log("Business registered successfully!");
+      res.status(201).json({ message: "Business registered successfully!", newbusiness: newBusinessObject.newBusiness });
+    } else {
+      console.error("Error creating business:", newBusinessObject.error);
+      res.status(400).json({ message: newBusinessObject.message });
+    }
   } catch (error) {
-    console.log(error)
-    const errorFound = findError(error.code);
-    return res
-      .status(errorFound[0]?.status)
-      .json({ error: errorFound[0]?.message })
+    console.error(error);
+    res.status(error.status || 500).json({ message: error.message });
   }
-}
+};
 
-export { getAllBusiness }
+export { createNewBusiness };

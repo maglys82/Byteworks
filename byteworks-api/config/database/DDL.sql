@@ -3,25 +3,22 @@ CREATE DATABASE byteworks;
 \c byteworks;
 
 CREATE TABLE users (
-  id        INTEGER        NOT NULL,
-  first_name          VARCHAR(50) NOT NULL,
-  last_name          VARCHAR(50) NOT NULL,
-  email     VARCHAR(50)   NOT NULL  UNIQUE,
-  password  VARCHAR(60)   NOT NULL,
-  role       VARCHAR(25)   NOT NULL,
-  type_of_work VARCHAR(25) NOT NULL,
-  review  INTEGER   NOT NULL,
-  PRIMARY KEY (id)
+  id SERIAL PRIMARY KEY,
+  firstName VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(60) NOT NULL,
+  role VARCHAR(25) NOT NULL,
+  skill VARCHAR(25) NOT NULL,
+  status VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE business (
-  id        INTEGER        NOT NULL,
-  email     VARCHAR(50)   NOT NULL  UNIQUE,
-  password  VARCHAR(60)   NOT NULL,
-  type      VARCHAR(50) NOT NULL,
-  role       VARCHAR(25)   NOT NULL,
-  type_of_service VARCHAR(25) NOT NULL,
-  PRIMARY KEY (id)
+  id SERIAL PRIMARY KEY,
+  firstName VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(60) NOT NULL,
+  role VARCHAR(25) NOT NULL,
+  type_of_service VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE skills (

@@ -1,42 +1,45 @@
-import { findError } from "../../byteworks-api/src/utils/utils.js"
-import jwt from "jsonwebtoken"
+import { findError } from "../../byteworks-api/src/utils/utils.js";
+import jwt from "jsonwebtoken";
 
 const isLogin = async (req, res, next) => {
+  if (req.path === "/users" && req.method === "POST") {
+    return next();
+  }
+
   try {
-    validateHeaders(req, res)
-    const token = req.header("Authorization").split(" ")[1]
+    validateHeaders(req, res);
+    const token = req.header("Authorization").split(" ")[1];
     console.log("JWT:", token);
-    const tokenData = await validateToken(token)
-    req.user = tokenData
-    next()
+    const tokenData = await validateToken(token);
+    req.user = tokenData;
+    next();
   } catch (error) {
-    const errorFound = findError(error.code)
+    const errorFound = findError(error.code);
     return res
       .status(errorFound[0]?.status)
-      .json({ error: errorFound[0]?.message })
+      .json({ error: errorFound[0]?.message });
   }
-}
+};
 
 const validateToken = async (token) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    return decoded
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return decoded;
   } catch (err) {
-    throw createError("auth_04", "Token no válido")
+    throw createError("auth_04", "Token no válido");
   }
-}
-
+};
 
 const validateHeaders = (req) => {
   if (!req.header("Authorization")) {
-    throw createError("auth_03", "token no encontrado")
+    throw createError("auth_03", "token no encontrado");
   }
-}
+};
 
 const createError = (code, message) => {
-  const error = new Error(message)
-  error.code = code
+  const error = new Error(message);
+  error.code = code;
   return error;
-}
+};
 
-export { isLogin }
+export { isLogin };

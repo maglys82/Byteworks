@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -17,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { Controller, useForm } from "react-hook-form";
-import { RegisterService } from "../../../services/RegisterService";
+import { RegisterBusinessService } from "../../../services/RegisterBusinessService";
 
 function Copyright(props) {
   return (
@@ -29,7 +27,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://byteworks.cl">
-        BiteWorks
+        ByteWorks
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -43,7 +41,7 @@ const Business = () => {
  
   const { register, handleSubmit, reset, control } = useForm();
   const onSubmit = (data) => {
-    RegisterService(data)
+    RegisterBusinessService(data)
     reset();
   };
 
@@ -157,15 +155,6 @@ const Business = () => {
                   autoFocus
                 />
               </Grid>
-
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox value="allowExtraEmails" color="primary" />
-                }
-                label="I want to receive information & promotions via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"

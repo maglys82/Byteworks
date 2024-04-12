@@ -9,7 +9,6 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
 import Container from "@mui/material/Container";
-import useUserData from '../../hooks/useUserData';
 
 const Profile = ({userId}) => {
     const [tabValue, setTabValue] = useState("0");
