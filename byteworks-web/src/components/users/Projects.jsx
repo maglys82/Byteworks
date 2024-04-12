@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import JobAutocompleteField from "./jobAutocompleteField";
-import { useData } from "../../context/ByteContext";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
@@ -10,15 +9,14 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import Tooltip from "@mui/material/Tooltip";
-import { useNavigate } from "react-router-dom";
 import Jobs from "./Jobs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { roleOptions, skillsOptions, statusOption, typeOptions } from "./Users.label";
+import UseFetchData from "../../hook/useFetchData";
 
 const Projects = () => {
-  const originalCardData = useData();
-  const [projectsData, setProjectsData] = useState(originalCardData);
-  const [filteredData, setFilteredData] = useState([]);
+  const data = UseFetchData()
+  const [projectsData, setProjectsData] = useState([]);
   const { handleSubmit, control } = useForm({
     defaultValues: {
       type: "",
@@ -27,7 +25,12 @@ const Projects = () => {
       skills: "",
     },
   });
-
+  useEffect(() => {
+    if (data) {
+      setProjectsData(() => [...data]);
+      console.log(data);
+    }
+  }, [data]);
   const onSubmit = (data) => {
     const filterData = (projectsData, data) => {
       return projectsData.filter(
@@ -46,10 +49,6 @@ const Projects = () => {
     console.log(filteredData, "filtered data");
     console.log(projectsData, "original data");
     console.log(data, "form data");
-  };
-
-  const handleClick = () => {
-    navigate("/Profile");
   };
 
   return (
@@ -73,7 +72,7 @@ const Projects = () => {
         >
           <Tooltip title="Mi Perfil">
             <Stack direction="row" spacing={2}>
-              <Avatar sx={{ bgcolor: lightBlue[500] }} onClick={handleClick}>
+              <Avatar sx={{ bgcolor: lightBlue[500] }}>
                 U
               </Avatar>
             </Stack>

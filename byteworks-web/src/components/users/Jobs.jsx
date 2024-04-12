@@ -16,7 +16,7 @@ const Jobs = ({data}) => {
       p={2}
       sx={{ marginTop: "5px" }}
     >
-      {data.map((job, index) => (
+      {data?.map((job, index) => (
         <JobCard
         key={`${job.id}-${index}`}
           id={job.id}
